@@ -1,12 +1,18 @@
 <div class="navbar navbar-dark bg-dark shadow-sm">
   <div class="container">
-    <a href="#" class="navbar-brand d-flex align-items-center">Bookers</a>
+    <a href="/" class="navbar-brand d-flex align-items-center">Bookers</a>
     <nav class="navbar navbar-expand-sm navbar-light">
-    <a href="#" class="navbar-brand d-flex align-items-center">home</a>
-    <a href="#" class="navbar-brand d-flex align-items-center">about</a>
-    <a href="#" class="navbar-brand d-flex align-items-center">sign_up</a>
-    <a href="#" class="navbar-brand d-flex align-items-center">login</a>
+    <% if user_signed_in? %>
+      <%= link_to "Home", root_path, class: 'navbar-brand d-flex align-items-center', method: :get %>
+      <%= link_to "Users", root_path, class: 'navbar-brand d-flex align-items-center', method: :get %>
+      <%= link_to "Books", root_path, class: 'navbar-brand d-flex align-items-center', method: :get %>
+      <%= link_to "logout", destroy_user_session_path, class: 'navbar-brand d-flex align-items-center', method: :delete %>
+    <% else %>
+      <%= link_to "Home", root_path, class: 'navbar-brand d-flex align-items-center', method: :get %>
+      <%= link_to "About", root_path, class: 'navbar-brand d-flex align-items-center', method: :get %>
+      <%= link_to "sign_up", new_user_registration_path, class: 'navbar-brand d-flex align-items-center', method: :get %>
+      <%= link_to "login", user_session_path, class: 'navbar-brand d-flex align-items-center', method: :post %>
+    <% end %>
     </nav>
   </div>
 </div>
-

@@ -3,11 +3,13 @@
     <a href="/" class="navbar-brand d-flex align-items-center">Bookers</a>
     <nav class="navbar navbar-expand-sm navbar-light">
     <% if user_signed_in? %>
-      <%= link_to "Home", root_path, class: 'navbar-brand d-flex align-items-center', method: :get %>
+      <!--User is alreadey log in-->
+      <%= link_to "Home", users_path, class: 'navbar-brand d-flex align-items-center', method: :get %>
       <%= link_to "Users", root_path, class: 'navbar-brand d-flex align-items-center', method: :get %>
       <%= link_to "Books", root_path, class: 'navbar-brand d-flex align-items-center', method: :get %>
       <%= link_to "logout", destroy_user_session_path, class: 'navbar-brand d-flex align-items-center', method: :delete %>
     <% else %>
+      <!--User is log out-->
       <%= link_to "Home", root_path, class: 'navbar-brand d-flex align-items-center', method: :get %>
       <%= link_to "About", root_path, class: 'navbar-brand d-flex align-items-center', method: :get %>
       <%= link_to "sign_up", new_user_registration_path, class: 'navbar-brand d-flex align-items-center', method: :get %>

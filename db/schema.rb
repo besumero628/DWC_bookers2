@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2021_07_06_142414) do
   create_table "books", force: :cascade do |t|
     t.integer "user_id"
     t.string "title"
-    t.text "opinion"
+    t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 2021_07_06_142414) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
+    t.string "introduction"
+    t.integer "profile_image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

@@ -2,9 +2,11 @@
 <div class="container">
 <div class='row'>
 <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
-  
+
 <!--view start-->
 <h2>Log in</h2>
+
+<%= render 'devise/shared/error_messages', resource: resource %>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">

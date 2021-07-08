@@ -4,7 +4,7 @@
     <nav class="navbar navbar-expand-sm navbar-light">
     <% if user_signed_in? %>
       <!--User is alreadey log in-->
-      <%= link_to "Home", root_path, class: 'navbar-brand d-flex align-items-center', method: :get %>
+      <%= link_to "Home", user_path(current_user.id), class: 'navbar-brand d-flex align-items-center', method: :get %>
       <%= link_to "Users", users_path, class: 'navbar-brand d-flex align-items-center', method: :get %>
       <%= link_to "Books", books_path, class: 'navbar-brand d-flex align-items-center', method: :get %>
       <%= link_to "logout", destroy_user_session_path, class: 'navbar-brand d-flex align-items-center', method: :delete %>

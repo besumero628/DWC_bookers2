@@ -1,0 +1,13 @@
+<table class = table>
+  <tr>
+    <th></th><th>title</th> <th>Opinion</th>
+  </tr>
+
+  
+  <tr>
+  <th><%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "noimage.jpg" %></th>
+  <th><%= books.title %></th>
+  <th><%= books.body %></th>
+  <tr>
+
+</table>

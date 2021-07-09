@@ -8,13 +8,10 @@
 <h1>User info</h1>
 <%= render 'users/users_form/user_info_form', user: @user  %>
 
-
 <!--New Book-->
 <h1>New book</h1>
 <%= render 'books/books_form/book_create_form', book: @book  %>
 
-
 <!--User Books-->
 <h1>Books</h1>
-<%= render 'books/books_form/users_all_books_form', books: @books, users: @users  %>
-
+<%= render 'books/books_form/user_all_books_form', books: @books, users: @users  %>

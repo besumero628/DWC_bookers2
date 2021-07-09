@@ -6,11 +6,7 @@
 
 <!--User info-->
 <h1>User info</h1>
-
-<%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "noimage.jpg" %>
-<p>name:<%= @user.name %></p>
-<p>introduction:<%= @user.introduction %></p>
-<%= link_to "edit", edit_user_path(current_user.id) %>
+<%= render 'users/users_form/user_info_form', user: @user  %>
 
 
 <!--New Book-->
@@ -20,3 +16,5 @@
 
 <!--User Books-->
 <h1>Books</h1>
+<%= render 'books/books_form/users_all_books_form', books: @books, users: @users  %>
+

@@ -1,0 +1,9 @@
+<%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "noimage.jpg" %>
+<p>name:<%= user.name %></p>
+<p>introduction:<%= user.introduction %></p>
+
+<% if user.id == current_user.id %>
+  <%= link_to "edit", edit_user_path(current_user.id) %>
+<% else %>
+  <%= link_to "edit", user_path(current_user.id) %>
+<% end %>

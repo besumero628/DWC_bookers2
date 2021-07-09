@@ -1,0 +1,12 @@
+<table class = table>
+  <tr>
+    <th>image</th><th>name</th> <th></th>
+  </tr>
+  <% users.each do |user| %>
+    <tr>
+    <th><%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "noimage.jpg" %></th>
+    <th><%= user.name %></th>
+    <th>Show</th> <!--あとでlink_toにする-->
+    <tr>
+  <% end %>
+</table>

@@ -1,0 +1,15 @@
+<%= form_with model: book, url: books_path, local: true do |f| %>
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :opinion %><br>
+    <%= f.text_area :body %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Create Book", class: 'btn btn-sm btn-success' %>
+  </div>
+<% end %>

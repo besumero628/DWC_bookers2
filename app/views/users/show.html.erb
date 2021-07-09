@@ -1,18 +1,22 @@
+<!--flash message-->
 <%= render 'devise/shared/flash_messages' %>
+
+<!--validation error message-->
+<%= render 'shared/validation_error_messages', instance: @book %>
+
+<!--User info-->
 <h1>User info</h1>
 
-<% if @user.profile_image_id != nil %>
-  <%= image_tag attachment_url(@user, :profile_image, :fill, 300, 300, format: "jpg") %>
-<% end %>
-
+<%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "noimage.jpg" %>
 <p>name:<%= @user.name %></p>
+<p>introduction:<%= @user.introduction %></p>
+<%= link_to "edit", edit_user_path(current_user.id) %>
 
-<% if @user.introduction != nil %>
-  <p>introduction:<%= @user.introduction %></p>
-<% end %>
 
-<%= link_to "edit", edit_user_path %>
-
+<!--New Book-->
 <h1>New book</h1>
+<%= render 'books/books_form/book_create_form', book: @book  %>
 
+
+<!--User Books-->
 <h1>Books</h1>

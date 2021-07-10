@@ -6,7 +6,7 @@
     <% @user = users.find(book.user_id) %>
     <tr>
     <th><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "noimage.jpg" %></th>
-    <th><%= book.title %></th>
+    <th><%= link_to "#{book.title}", book_path(book.id) %></th>
     <th><%= book.body %></th>
     <tr>
   <% end %>

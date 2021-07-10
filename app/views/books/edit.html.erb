@@ -1,0 +1,10 @@
+<h1>Editing Book</h1>
+
+<!--flash message-->
+<%= render 'devise/shared/flash_messages' %>
+
+<!--validation error message-->
+<%= render 'shared/validation_error_messages', instance: @book %>
+
+<!--edit book-->
+<%= render 'books/books_form/book_edit_form', book: @book %>

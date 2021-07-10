@@ -25,7 +25,9 @@ class BooksController < ApplicationController
       redirect_to user_path(current_user.id) #books/showに変える
     else
       @user = User.find(current_user.id)
+      @users = User.all
       @book = book
+      @books = Book.all
       render template: "users/show"
     end
   end

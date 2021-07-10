@@ -6,10 +6,13 @@
 
   <div class="field">
     <%= f.label :Opinion %><br>
-    <%= f.text_field :body %>
+    <%= f.text_area :body %>
   </div>
 
   <div class="actions">
     <%= f.submit "Update book", class: 'btn btn-sm btn-success' %>
   </div>
 <% end %>
+
+<%= link_to "show", book_path(book.id) %> |
+<%= link_to "back", books_path %>

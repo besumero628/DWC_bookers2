@@ -4,14 +4,20 @@
 <!--validation error message-->
 <%= render 'shared/validation_error_messages', instance: @book %>
 
-<!--User info-->
-<h1>User info</h1>
-<%= render 'users/users_form/user_info_form', user: @user  %>
+<div class='row'>
+  <div class='col-md-3'>
+    <!--User info-->
+    <h1>User info</h1>
+    <%= render 'users/users_form/user_info_form', user: @user  %>
 
-<!--New Book-->
-<h1>New book</h1>
-<%= render 'books/books_form/book_create_form', book: @book  %>
+    <!--New Book-->
+    <h1>New book</h1>
+    <%= render 'books/books_form/book_create_form', book: @book  %>
+  </div>
 
-<!--User Books-->
-<h1>Book detail</h1>
-<%= render 'books/books_form/books_show_form', books: @books, user: @user  %>
+  <div class='col-md-8 offset-md-1'>
+    <!--User Books-->
+    <h1>Book detail</h1>
+    <%= render 'books/books_form/books_show_form', books: @books, user: @user  %>
+  </div>
+</div>

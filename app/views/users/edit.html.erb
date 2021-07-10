@@ -1,3 +1,10 @@
 <h1>Usr info</h1>
 
+<!--flash message-->
+<%= render 'devise/shared/flash_messages' %>
+
+<!--validation error message-->
+<%= render 'shared/validation_error_messages', instance: @user %>
+
+<!--edit user-->
 <%= render 'users/users_form/user_edit_form', user: @user  %>

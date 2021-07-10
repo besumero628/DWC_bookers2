@@ -1,5 +1,5 @@
 <% if instance.errors.any? %>
-  <p>error!</p>
+  <p class = "validation_error" >error!</p>
   <% instance.errors.full_messages.each do |message| %>
     <li><%= message %></li>
   <% end %>

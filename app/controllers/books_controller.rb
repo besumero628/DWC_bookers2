@@ -1,4 +1,13 @@
 class BooksController < ApplicationController
+  before_action :ensure_current_user, {only: [:edit, :update]}
+  
+  def ensure_current_user
+    @user_id = Book.find(params[:id]).user_id
+    if current_user.id != @user_id
+      flash.alert = "You cannot access!"
+      redirect_to user_path(current_user.id)
+    end
+  end
 
   def index
     @user = User.find(current_user.id) #user info に表示したいuer
@@ -9,8 +18,8 @@ class BooksController < ApplicationController
 
   def show
      @book = Book.new
-     @books = Book.find(params[:id])
-     @user = User.find(@books.user_id)
+     @book_detail = Book.find(params[:id])
+     @user = User.find(@book_detail.user_id)
   end
 
   def edit

@@ -1,4 +1,13 @@
 class UsersController < ApplicationController
+  before_action :ensure_current_user, {only: [:edit, :update]}
+  
+  def ensure_current_user
+    @user_id = User.find(params[:id]).id
+    if current_user.id != @user_id
+      flash[:alert]="You cannot access!"
+      redirect_to user_path(current_user.id)
+    end
+  end
 
   def index
     @user = User.find(current_user.id)

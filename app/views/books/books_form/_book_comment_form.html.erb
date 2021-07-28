@@ -1,0 +1,11 @@
+<!--新規コメント-->
+<%= form_with model: book_comment, url: book_book_comments_path(book.id), local: true do |f| %>
+  <div class="field">
+    <%= f.label :comment %><br>
+    <%= f.text_area :comment, class: "book_comment", rows: "7" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "送信", class: 'btn btn-sm btn-success' %>
+  </div>
+<% end %>

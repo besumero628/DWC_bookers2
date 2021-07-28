@@ -1,6 +1,6 @@
 <table class = table>
   <tr>
-    <th></th><th>title</th> <th>Opinion</th> <th></th>
+    <th></th><th>title</th> <th>Opinion</th> <th colspan=2></th>
   </tr>
   <% books.each do |book| %>
     <% @user = users.find(book.user_id) %>
@@ -20,6 +20,8 @@
       <% else %>
         <th><%= link_to "♡#{book.favorites_count}", book_favorites_path(book.id), method: :create %></th>
       <% end %>
+      
+      <td>コメント数：<%= book.book_comments_count %></td>
 
     <tr>
   <% end %>

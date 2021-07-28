@@ -5,5 +5,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users, only: [:index, :show, :edit, :update]
-  resources :books, except: [:new]
+  resources :books, except: [:new] do
+    resources :favorites, only: [:create, :destroy]
+  end
+  
 end

@@ -13,6 +13,12 @@
 
     <th><%= book.title %></th>
     <th><%= book.body %></th>
+    
+    <% if book.favorited?(current_user.id) %>
+      <th><%= link_to "♡#{book.favorites_count}", book_favorite_path(book.id, Favorite.find_by(book_id: book.id, user_id: current_user.id)), method: :delete %></th>
+    <% else %>
+      <th><%= link_to "♡#{book.favorites_count}", book_favorites_path(book.id), method: :create %></th>
+    <% end %>
 
     <% if book.user_id == current_user.id %>
       <th><%= link_to "Edit", edit_book_path(params[:id]) %></th>

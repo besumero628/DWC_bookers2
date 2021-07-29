@@ -13,5 +13,15 @@ class User < ApplicationRecord
   has_many :books, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :book_comments, dependent: :destroy
-  has_many :relationships, dependent: :destroy
+
+  has_many :follower, class_name:"Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :all_follower, through: :follower, source: :relationships
+
+  has_many :followed, class_name:"Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :all_followed, through: :follower, source: :relationships
+  
+  def follower?(current_user_id)
+    Relationship.exists?(follower_id: current_user_id, followed_id: id) ? true : false
+  end
+  
 end

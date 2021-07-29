@@ -1,0 +1,49 @@
+<table class = "table">
+  
+  <% if type == :follow %>
+    <% if user.all_follower.count == 0 %>
+      ユーザーはいません
+    <% else %>
+      <tr>
+        <th>image</th><th>name</th><th colspan = "3"></th>
+      </tr>
+    <% end %>
+  <% elsif type == :follower %>
+    <% if user.all_followed.count == 0 %>
+      ユーザーはいません
+    <% else %>
+      <tr>
+        <th>image</th><th>name</th><th colspan = "3"></th>
+      </tr>
+    <% end %>
+  <% end %>
+  
+  <% if type == :follow %>
+  
+    <% user.all_follower.each do |follower| %>
+      <% @follow = User.find(follower.id)%>
+      <tr>
+        <td><%= attachment_image_tag @follow, :profile_image, format: 'jpeg', fallback: "noimage.jpg", size:'50x50' %></td>
+        <td><%= @follow.name %></td>
+        <td>フォロー数：<%= @follow.follower.count %></td>
+        <td>フォロワー数：<%= @follow.followed.count %></td>
+        <td><%= link_to "Show", user_path(@follow.id), method: :get %></td>
+      </tr>
+    <% end %>
+  
+  <% elsif type == :follower %>
+  
+    <% user.all_followed.each do |follower| %>
+      <% @follower = User.find(follower.id)%>
+      <tr>
+        <td><%= attachment_image_tag @follower, :profile_image, format: 'jpeg', fallback: "noimage.jpg", size:'50x50' %></td>
+        <td><%= @follower.name %></td>
+        <td>フォロー数：<%= @follower.follower.count %></td>
+        <td>フォロワー数：<%= @follower.followed.count %></td>
+        <td><%= link_to "Show", user_path(@follower.id), method: :get %></td>
+      </tr>
+    <% end %>
+  
+  <% end %>
+
+</table>

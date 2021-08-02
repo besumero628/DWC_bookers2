@@ -1,0 +1,16 @@
+<h1>Books searche for" <%="#{params[:searche_word]}"%> "</h1>
+
+<table class="table">
+  <tr>
+    <th></th><th>title</th><th>opinion</th>
+  </tr>
+  
+  <% books.each do |book| %>
+    <tr>
+      <td><%= attachment_image_tag User.find(book.user_id), :profile_image, format: 'jpeg', fallback: "noimage.jpg", size:'50x50' %></td>
+      <td><%= book.title %></td>
+      <td><%= book.body %></td>
+    </tr>
+  <% end %>
+  
+</table>

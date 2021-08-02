@@ -1,10 +1,20 @@
-<h1>Users searche for ""</h1>
+<h1>Users searche for" <%="#{params[:searche_word]}"%> "</h1>
 
 <table class="table">
   <tr>
     <th>Image</th><th>name</th><th>introduction</th><th>follows</th><th>followers</th><th></th>
   </tr>
   
-  
+  <% users.each do |user| %>
+    <tr>
+      <td><%= attachment_image_tag user, :profile_image, format: 'jpeg', fallback: "noimage.jpg", size:'50x50' %></td>
+      <td><%= user.name %></td>
+      <td><%= user.introduction %></td>
+      <td><%= link_to "#{user.follower.count}", user_relationships_follower_path(user.id), method: :get %></td>
+      <td><%= link_to "#{user.followed.count}", user_relationships_followed_path(user.id), method: :get %></td>
+      <td><%= link_to "Show", user_path(user.id), method: :get %></td>
+    </tr>
+    
+  <% end %>
   
 </table>

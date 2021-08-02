@@ -1,12 +1,12 @@
-<%= form_with model:@user, url: searches_path, class:"form-row", local:true do |f| %>
+<%= form_with url: searches_path, method: 'get', class:"form-row", local:true do |f| %>
   <div class="field">
       <%= f.text_field :searche_word%>
       <%= f.select :model, [["Book", "Book"], ["User","User"]]%>
       <%= f.select :searche_way, [
         ["完全一致", "exact_match"], 
-        ["前方一致","forward_match"], 
-        ["後方一致","backward_match"], 
-        ["部分一致","partial _match"]]
+        ["前方一致", "forward_match"], 
+        ["後方一致", "backward_match"], 
+        ["部分一致", "partial_match"]]
       %>
   </div>
   

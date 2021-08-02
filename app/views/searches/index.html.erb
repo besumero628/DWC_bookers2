@@ -1,1 +1,5 @@
-<%= render '/searches/searches_form/searche_users_form' %>
+<% if @books != nil %>
+    <%= render '/searches/searches_form/searche_books_form', books: @books %>
+<% else %>
+    <%= render '/searches/searches_form/searche_users_form', users: @users %>
+<% end %>

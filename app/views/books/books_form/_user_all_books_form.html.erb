@@ -6,21 +6,17 @@
     <% @user = users.find(book.user_id) %>
     <tr>
 
-      <th>
+      <td>
         <%= link_to user_path(@user.id) do %>
         <%= attachment_image_tag @user, :profile_image, format: 'jpeg', fallback: "noimage.jpg", size:'50x50' %>
         <% end %>
-      </th>
+      </td>
 
-      <th><%= link_to "#{book.title}", book_path(book.id) %></th>
-      <th><%= book.body %></th>
+      <td><%= link_to "#{book.title}", book_path(book.id) %></td>
+      <td><%= book.body %></td>
 
-      <% if book.favorited?(current_user) %>
-        <th><%= link_to "♡#{book.favorites_count}", book_favorite_path(book.id, Favorite.find_by(book_id: book.id, user_id: current_user.id)), method: :delete, class: "favorite" %></th>
-      <% else %>
-        <th><%= link_to "♡#{book.favorites_count}", book_favorites_path(book.id), method: :create %></th>
-      <% end %>
-      
+      <%= tag.td(render('favorites/favorites_form/favorite_btn_form', book: book), class: "favorite-btn#{book.id}")  %>
+
       <td>コメント数：<%= book.book_comments_count %></td>
 
     <tr>

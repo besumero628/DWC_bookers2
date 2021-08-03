@@ -14,12 +14,8 @@
     <td><%= book.title %></td>
     <td><%= book.body %></td>
 
-    <% if book.favorited?(current_user.id) %>
-      <td><%= link_to "♡#{book.favorites_count}", book_favorite_path(book.id, Favorite.find_by(book_id: book.id, user_id: current_user.id)), method: :delete, class: "favorite" %></td>
-    <% else %>
-      <td><%= link_to "♡#{book.favorites_count}", book_favorites_path(book.id), method: :create %></td>
-    <% end %>
-    
+    <%= tag.td(render('favorites/favorites_form/favorite_btn_form', book: book), class: "favorite-btn#{book.id}")  %>
+
     <td>コメント数：<%= book.book_comments_count %></td>
 
     <% if book.user_id == current_user.id %>

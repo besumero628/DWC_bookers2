@@ -3,7 +3,7 @@
     <th></th><th>title</th> <th>Opinion</th> <th colspan=2></th>
   </tr>
   <% books.each do |book| %>
-    <% @user = users.find(book.user_id) %>
+    <% @user = User.find(book.user_id) %>
     <tr>
 
       <td>

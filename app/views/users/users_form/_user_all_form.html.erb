@@ -5,27 +5,24 @@
   <% users.each do |user| %>
     <tr>
       <%= link_to user_path(user.id) do %>
-        <th><%= attachment_image_tag user, :profile_image, format: 'jpeg', fallback: "noimage.jpg", size:'50x50' %></th>
+        <td><%= attachment_image_tag user, :profile_image, format: 'jpeg', fallback: "noimage.jpg", size:'50x50' %></td>
       <% end %>
 
-      <th><%= user.name %></th>
-      <th>フォロー数：<%= user.follower.count %></th>
-      <th>フォロワー数：<%= user.followed.count %></th>
+      <td><%= user.name %></td>
+      <td>フォロー数：<%= user.follower.count %></td>
+      <td>フォロワー数：<%= user.followed.count %></td>
 
       <% if user.id == current_user.id %>
-        <th></th>
+        <td></td>
       <% else %>
         <% if user.follower?(current_user.id) %>
-          <th><%= link_to "フォロー外す", user_relationship_path(user.id, Relationship.find_by(follower_id: current_user.id, followed_id: user.id)), method: :delete %></th>
+          <td><%= link_to "フォロー外す", user_relationship_path(user.id, Relationship.find_by(follower_id: current_user.id, followed_id: user.id)), method: :delete %></td>
         <% else %>
-          <th><%= link_to "フォローする", user_relationships_path(user.id), method: :post %></th>
+          <td><%= link_to "フォローする", user_relationships_path(user.id), method: :post %></td>
         <% end %>
       <% end %>
 
-
-
-
-      <th><%= link_to "Show", user_path(user.id), method: :get %></th>
+      <td><%= link_to "Show", user_path(user.id), method: :get %></td>
     <tr>
   <% end %>
 </table>

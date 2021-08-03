@@ -1,5 +1,7 @@
 class BooksController < ApplicationController
   before_action :ensure_current_user, {only: [:edit, :update]}
+  before_action :favorites_order, {only: [:index]}
+
 
   def ensure_current_user
     @user_id = Book.find(params[:id]).user_id
@@ -11,9 +13,8 @@ class BooksController < ApplicationController
 
   def index
     @user = User.find(current_user.id) #user info に表示したいuer
-    @users = User.all #ページに表示したいbookのuser
     @book = Book.new #new book
-    @books = Book.all #ページに表示したいbook
+    @books = Book.find(@order_array).sort_by{ |o| @order_array.index(o.id)} #ページに表示したいbook
   end
 
   def show
@@ -65,6 +66,17 @@ class BooksController < ApplicationController
   private
   def book_params
     params.require(:book).permit(:title, :body)
+  end
+
+  def favorites_order
+    array = []
+    Book.count.times do |n|
+      array << [n+1, Favorite.where(book_id: n+1, created_at: 7.days.ago..Time.current).count]
+    end
+
+    array.sort! {|a,b| b[1] <=> a[1]}
+    @order_array = array.map{|item| item[0]}
+    #return @order_array
   end
 
 end

@@ -1,0 +1,2 @@
+$(".book_comments").html("<%= escape_javascript(render partial: 'books/books_form/book_comments_form', locals: {book_comments: @book_comments, user: @user}) %>");
+$(".book_comment_form").html("<%= escape_javascript(render partial: 'books/books_form/book_comment_form', locals: {book: @book_detail, book_comment: @new_book_comment}) %>");

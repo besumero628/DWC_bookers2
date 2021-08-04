@@ -30,6 +30,11 @@
 <% else %>
   <% if user.follower?(current_user.id) %>
     <th><%= link_to "フォロー外す", user_relationship_path(user.id, Relationship.find_by(follower_id: current_user.id, followed_id: user.id)), method: :delete, class: 'btn btn-sm btn-danger' %></th>
+    
+    <% if user.mutual_follow?(current_user) %>
+    <th><%= link_to "chatを始める", user_direct_messages_chat_path(user.id) %></th>
+    <% end %>
+    
   <% else %>
     <th><%= link_to "フォローする", user_relationships_path(user.id), method: :post, class: 'btn btn-sm btn-success' %></th>
   <% end %>

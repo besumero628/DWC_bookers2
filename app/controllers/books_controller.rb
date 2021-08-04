@@ -70,8 +70,8 @@ class BooksController < ApplicationController
 
   def favorites_order
     array = []
-    Book.count.times do |n|
-      array << [n+1, Favorite.where(book_id: n+1, created_at: 7.days.ago..Time.current).count]
+    Book.all.each do |item|
+      array << [item.id, Favorite.where(book_id: item, created_at: 7.days.ago..Time.current).count]
     end
 
     array.sort! {|a,b| b[1] <=> a[1]}

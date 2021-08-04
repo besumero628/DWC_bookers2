@@ -1,0 +1,13 @@
+<!--コメント一覧-->
+<table class = "DM-table">
+  <th></th><th>name</th><th>message</th><th class="DM-time">send time</th>
+
+  <% @direct_messages.each do |dm| %>
+    <tr class = "DM-message">
+      <td><%= attachment_image_tag User.find(dm.send_user_id), :profile_image, format: 'jpeg', fallback: "noimage.jpg", size:'50x50' %></td>
+      <td><%= User.find(dm.send_user_id).name %></td>
+      <td><%= dm.message %></td>
+      <td class = "DM-time"><%= dm.created_at %></td>
+    </tr>
+  <% end %>
+</table>

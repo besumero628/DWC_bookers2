@@ -1,0 +1,7 @@
+<h1>chat room with "<%= @receive_user.name %>"</h1>
+
+<!--validation error message-->
+<%= render 'shared/validation_error_messages', instance: @direct_message %>
+
+<%= render 'direct_messages/direct_messages_form/messages_form'%>
+<%= render 'direct_messages/direct_messages_form/message_create_form', user: @receive_user%>

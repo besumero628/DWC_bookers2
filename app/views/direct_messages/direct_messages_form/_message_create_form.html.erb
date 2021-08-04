@@ -1,0 +1,6 @@
+<!--新規DM-->
+<%= form_with model: @direct_message, url: user_direct_messages_path(user.id), local: true do |f| %>
+  <div class="field">
+    <%= f.text_field :message %>
+  </div>
+<% end %>

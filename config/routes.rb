@@ -5,10 +5,14 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users, only: [:index, :show, :edit, :update] do
+    # フォロー機能
     resources :relationships, only: [:create, :destroy]
     get "follower" => "relationships#follower", as: :relationships_follower
     get "followed" => "relationships#followed", as: :relationships_followed
-    resources :direct_messages, only: [:index, :show, :create, :destroy]
+    # DM機能
+    resources :direct_messages, only: [:create, :destroy]
+    get "chat" => "direct_messages#chat", as: :direct_messages_chat
+
   end
 
   resources :books, except: [:new] do

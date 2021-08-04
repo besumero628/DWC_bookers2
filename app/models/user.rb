@@ -24,8 +24,12 @@ class User < ApplicationRecord
   has_many :receive_user, class_name:"DirectMessage", foreign_key: "receive_user_id", dependent: :destroy
 
 
-  def follower?(current_user_id)
-    Relationship.exists?(follower_id: current_user_id, followed_id: id) ? true : false
+  def follower?(user_id)
+    Relationship.exists?(follower_id: user_id, followed_id: id) ? true : false
+  end
+
+  def mutual_follow?(user)
+    (self.follower?(user.id) && User.find(user.id).follower?(self.id)) ? true : false
   end
 
 end

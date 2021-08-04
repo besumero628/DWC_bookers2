@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :relationships, only: [:create, :destroy]
     get "follower" => "relationships#follower", as: :relationships_follower
     get "followed" => "relationships#followed", as: :relationships_followed
+    resources :direct_messages, only: [:index, :show, :create, :destroy]
   end
 
   resources :books, except: [:new] do

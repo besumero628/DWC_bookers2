@@ -76,7 +76,6 @@ class BooksController < ApplicationController
 
     array.sort! {|a,b| b[1] <=> a[1]}
     @order_array = array.map{|item| item[0]}
-    #return @order_array
   end
 
 end

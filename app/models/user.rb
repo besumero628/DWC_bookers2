@@ -20,6 +20,9 @@ class User < ApplicationRecord
   has_many :followed, class_name:"Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :all_followed, through: :followed, source: :follower
 
+  has_many :send_user, class_name:"DirectMessage", foreign_key: "send_user_id", dependent: :destroy
+  has_many :receive_user, class_name:"DirectMessage", foreign_key: "receive_user_id", dependent: :destroy
+
 
   def follower?(current_user_id)
     Relationship.exists?(follower_id: current_user_id, followed_id: id) ? true : false

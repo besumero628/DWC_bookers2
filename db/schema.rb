@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_29_000631) do
+ActiveRecord::Schema.define(version: 2021_08_04_012823) do
 
   create_table "book_comments", force: :cascade do |t|
     t.integer "user_id"
@@ -28,6 +28,16 @@ ActiveRecord::Schema.define(version: 2021_07_29_000631) do
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "direct_messages", force: :cascade do |t|
+    t.integer "send_user_id"
+    t.integer "receive_user_id"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["receive_user_id"], name: "index_direct_messages_on_receive_user_id"
+    t.index ["send_user_id"], name: "index_direct_messages_on_send_user_id"
   end
 
   create_table "favorites", force: :cascade do |t|

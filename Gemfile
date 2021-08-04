@@ -70,3 +70,6 @@ gem "refile-mini_magick"
 # bootstrap
 gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
+
+#impressionist
+gem 'impressionist', '~>1.6.1'

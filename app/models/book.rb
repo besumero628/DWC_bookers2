@@ -1,10 +1,12 @@
 class Book < ApplicationRecord
-  validates :title, presence:true
-  validates :body, length: { maximum: 200 },presence:true
-
   belongs_to :user
   has_many :favorites, dependent: :destroy#, foreign_key => "book_id"
   has_many :book_comments, dependent: :destroy
+  is_impressionable
+  
+  validates :title, presence:true
+  validates :body, length: { maximum: 200 },presence:true
+  
 
   def favorites_count
     Favorite.where(book_id: id).count

@@ -1,6 +1,6 @@
 <table class = table>
   <tr>
-    <th></th><th>title</th> <th>Opinion</th> <th colspan=4></th>
+    <th></th><th>title</th> <th>Opinion</th> <th colspan=5></th>
   </tr>
 
   <tr>
@@ -17,6 +17,7 @@
     <%= tag.td(render('favorites/favorites_form/favorite_btn_form', book: book), class: "favorite-btn#{book.id}")  %>
 
     <td>コメント数：<%= book.book_comments_count %></td>
+    <td>閲覧数：<%= book.impressionist_count %></td>
 
     <% if book.user_id == current_user.id %>
       <td><%= link_to "Edit", edit_book_path(params[:id]) %></td>

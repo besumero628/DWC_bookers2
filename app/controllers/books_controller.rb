@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  impressionist :actions=>[:show]
+
   before_action :ensure_current_user, {only: [:edit, :update]}
   before_action :favorites_order, {only: [:index]}
 
@@ -18,11 +20,14 @@ class BooksController < ApplicationController
   end
 
   def show
-     @book = Book.new
-     @book_detail = Book.find(params[:id])
-     @book_comments = BookComment.where(book_id: @book_detail.id)
-     @book_comment = BookComment.new
-     @user = User.find(@book_detail.user_id)
+    @book = Book.new
+    @book_detail = Book.find(params[:id])
+    @book_comments = BookComment.where(book_id: @book_detail.id)
+    @book_comment = BookComment.new
+    @user = User.find(@book_detail.user_id)
+    
+    impressionist(@book_detail)
+    
   end
 
   def edit

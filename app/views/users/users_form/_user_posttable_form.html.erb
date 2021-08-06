@@ -1,0 +1,29 @@
+<% post_today = Book.where(user_id: user.id).where("created_at >= ?", Time.now.in_time_zone("Tokyo").beginning_of_day).count %>
+<% post_yesterday = Book.where(user_id: user.id).where(created_at: 1.day.ago.in_time_zone("Tokyo").all_day).count %>
+<% ratio_day = ((post_today.to_f / (post_yesterday != 0 ? post_yesterday.to_f : 1.0))*100).round(1)  %>
+
+<% post_this_week = Book.where(user_id: user.id).where(created_at: 1.week.ago.in_time_zone("Tokyo").beginning_of_day..Time.now.in_time_zone("Tokyo").end_of_day).count %>
+<% post_last_week = Book.where(user_id: user.id).where(created_at: 2.week.ago.in_time_zone("Tokyo").beginning_of_day..1.week.ago.in_time_zone("Tokyo").beginning_of_day).count %>
+<% ratio_week = ((post_this_week.to_f / (post_last_week != 0 ? post_last_week.to_f : 1.0))*100).round(1)  %>
+
+<table class = "table table-bordered">
+  <tr>
+    <th>今日の投稿数</th><th>前日の投稿数</th><th>前日比</th>
+  </tr>
+  <tr>
+    <td><%= post_today %></td>
+    <td><%= post_yesterday %></td>
+    <td><%= ratio_day%>%</td>
+  </tr>
+</table>
+
+<table class = "table table-bordered">
+  <tr>
+    <th>今週の投稿数</th><th>前週の投稿数</th><th>前週比</th>
+  </tr>
+  <tr>
+    <td><%= post_this_week %></td>
+    <td><%= post_last_week %></td>
+    <td><%= ratio_week %>%</td>
+  </tr>
+</table>

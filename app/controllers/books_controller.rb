@@ -25,9 +25,9 @@ class BooksController < ApplicationController
     @book_comments = BookComment.where(book_id: @book_detail.id)
     @book_comment = BookComment.new
     @user = User.find(@book_detail.user_id)
-    
+
     impressionist(@book_detail)
-    
+
   end
 
   def edit

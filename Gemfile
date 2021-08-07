@@ -73,3 +73,6 @@ gem 'jquery-rails'
 
 #impressionist
 gem 'impressionist', '~>1.6.1'
+
+#chart
+gem 'chart-js-rails', '~> 0.1.4'

@@ -20,6 +20,11 @@ class UsersController < ApplicationController
     @users = User.all
     @book = Book.new
     @books = Book.where(user_id: params[:id])
+    
+    respond_to do |format|
+      format.html
+      format.js {render "book_search_result.js"}
+    end
   end
 
   def edit

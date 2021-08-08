@@ -1,0 +1,15 @@
+<% post_date_time = Time.parse(params[:post_date]) %>
+<% post_count = books.where(created_at: post_date_time.in_time_zone("Tokyo").beginning_of_day..post_date_time.in_time_zone("Tokyo").end_of_day).count %>
+
+<h2>検索結果</h2>
+
+<div class = "book-search-result">
+  <table class = "table table-bordered">
+  <tr>
+    <th>投稿数</th>
+  </tr>
+  <tr>
+    <td><%= post_count %></td>
+  </tr>
+</table>
+</div>

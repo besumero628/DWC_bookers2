@@ -10,7 +10,7 @@
     <!--User info-->
     <h1>User info</h1>
     <%= render 'users/users_form/user_info_form', user: @user  %>
-    
+
     <!--New Book-->
     <h1>New book</h1>
     <%= render 'books/books_form/book_create_form', book: @book  %>
@@ -21,10 +21,13 @@
     <!--User Books-->
     <h1>Books</h1>
     <%= render 'books/books_form/user_all_books_form', books: @books, users: @users  %>
-    
+
+    <!--a book search-->
+    <%= render 'users/users_form/user_postday_search_form', books: @books%>
+
     <!--Number of posts-->
     <h2>投稿数の前日比・前週比</h2>
     <%= render 'users/users_form/user_posttable_form', user: @user %>
-    
+
   </div>
 </div>

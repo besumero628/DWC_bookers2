@@ -16,18 +16,18 @@
       <td><%= book.body %></td>
 
       <%= tag.td(render('favorites/favorites_form/favorite_btn_form', book: book), class: "favorite-btn#{book.id}")  %>
-      
+
       <td>
-      <div id="star-rate-<%= book.id %>"></div>
+      <div id="star-rate-<%= book.id %>", class = "star-rate"></div>
       <script>
         $('#star-rate-<%= book.id %>').raty({
-          size: 10,
+          size: 1,
           starOff:  '<%= asset_path('star-off.png') %>',
           starOn : '<%= asset_path('star-on.png') %>',
           readOnly: true,
           score: <%= book.rate %>,
         });
-      </script>  
+      </script>
     </td>
 
       <td>コメント数：<%= book.book_comments_count %></td>

@@ -16,7 +16,7 @@ class BooksController < ApplicationController
   def index
     @user = User.find(current_user.id) #user info に表示したいuer
     @book = Book.new #new book
-    @books = Book.find(@order_array).sort_by{ |o| @order_array.index(o.id)} #ページに表示したいbook
+    @books = Book.includes(:user).find(@order_array).sort_by{ |o| @order_array.index(o.id)} #ページに表示したいbook
   end
 
   def show
@@ -70,7 +70,7 @@ class BooksController < ApplicationController
 
   private
   def book_params
-    params.require(:book).permit(:title, :body)
+    params.require(:book).permit(:title, :body, :rate)
   end
 
   def favorites_order

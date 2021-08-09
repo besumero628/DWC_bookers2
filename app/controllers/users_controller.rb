@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     @books = Book.where(user_id: params[:id])
     
     respond_to do |format|
-      format.html
+      format.html {render "show"}
       format.js {render "book_search_result.js"}
     end
   end

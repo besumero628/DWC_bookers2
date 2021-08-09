@@ -1,6 +1,6 @@
 <table class = table>
   <tr>
-    <th></th><th>title</th> <th>Opinion</th> <th colspan=3></th>
+    <th></th><th>title</th> <th>Opinion</th> <th colspan=4></th>
   </tr>
   <% books.each do |book| %>
     <% @user = User.find(book.user_id) %>
@@ -16,6 +16,19 @@
       <td><%= book.body %></td>
 
       <%= tag.td(render('favorites/favorites_form/favorite_btn_form', book: book), class: "favorite-btn#{book.id}")  %>
+      
+      <td>
+      <div id="star-rate-<%= book.id %>"></div>
+      <script>
+        $('#star-rate-<%= book.id %>').raty({
+          size: 10,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          readOnly: true,
+          score: <%= book.rate %>,
+        });
+      </script>  
+    </td>
 
       <td>コメント数：<%= book.book_comments_count %></td>
       <td>閲覧数：<%= book.impressionist_count %></td>

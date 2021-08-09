@@ -2,7 +2,7 @@ class BooksController < ApplicationController
   impressionist :actions=>[:show]
 
   before_action :ensure_current_user, {only: [:edit, :update]}
-  before_action :favorites_order, {only: [:index]}
+  #before_action :favorites_order, {only: [:index]}
 
 
   def ensure_current_user
@@ -16,7 +16,18 @@ class BooksController < ApplicationController
   def index
     @user = User.find(current_user.id) #user info に表示したいuer
     @book = Book.new #new book
-    @books = Book.includes(:user).find(@order_array).sort_by{ |o| @order_array.index(o.id)} #ページに表示したいbook
+
+    if params[:new_order_flag] == "true"
+      @books = Book.all.order(created_at: :desc)
+    elsif params[:rate_order_flag] == "true"
+      bookrate_order
+      @books = Book.includes(:user).find(@order_array).sort_by{ |o| @order_array.index(o.id)}
+    else
+      favorites_order
+      @books = Book.includes(:user).find(@order_array).sort_by{ |o| @order_array.index(o.id)}
+    end
+
+     #ページに表示したいbook
   end
 
   def show
@@ -71,6 +82,16 @@ class BooksController < ApplicationController
   private
   def book_params
     params.require(:book).permit(:title, :body, :rate)
+  end
+
+  def bookrate_order
+    array = []
+    Book.all.each do |item|
+      array << [item.id, item.rate]
+    end
+
+    array.sort! {|a,b| b[1] <=> a[1]}
+    @order_array = array.map{|item| item[0]}
   end
 
   def favorites_order

@@ -2,8 +2,6 @@ class BooksController < ApplicationController
   impressionist :actions=>[:show]
 
   before_action :ensure_current_user, {only: [:edit, :update]}
-  #before_action :favorites_order, {only: [:index]}
-
 
   def ensure_current_user
     @user_id = Book.find(params[:id]).user_id
@@ -17,17 +15,21 @@ class BooksController < ApplicationController
     @user = User.find(current_user.id) #user info に表示したいuer
     @book = Book.new #new book
 
-    if params[:new_order_flag] == "true"
-      @books = Book.all.order(created_at: :desc)
+    @books = Book.all
+
+    if params[:search_category]
+      @books = @books.find(search_category(@books, params[:search_category]))
+    elsif params[:new_order_flag] == "true"
+      @books = @books.all.order(created_at: :desc)
     elsif params[:rate_order_flag] == "true"
-      bookrate_order
-      @books = Book.includes(:user).find(@order_array).sort_by{ |o| @order_array.index(o.id)}
+      bookrate_order(@books)
+      @books = @books.find(@order_array).sort_by{ |o| @order_array.index(o.id)}
     else
-      favorites_order
-      @books = Book.includes(:user).find(@order_array).sort_by{ |o| @order_array.index(o.id)}
+      favorites_order(@books)
+      @books = @books.find(@order_array).sort_by{ |o| @order_array.index(o.id)}
     end
 
-     #ページに表示したいbook
+
   end
 
   def show
@@ -81,27 +83,37 @@ class BooksController < ApplicationController
 
   private
   def book_params
-    params.require(:book).permit(:title, :body, :rate)
+    params.require(:book).permit(:title, :body, :category, :rate)
   end
 
-  def bookrate_order
+  def bookrate_order(model)
     array = []
-    Book.all.each do |item|
-      array << [item.id, item.rate]
+    model.each_with_index do |item, idx|
+      array << [idx+1, item.rate]
     end
 
     array.sort! {|a,b| b[1] <=> a[1]}
     @order_array = array.map{|item| item[0]}
   end
 
-  def favorites_order
+  def favorites_order(model)
     array = []
-    Book.all.each do |item|
-      array << [item.id, Favorite.where(book_id: item, created_at: 7.days.ago..Time.current).count]
+    model.each_with_index do |item, idx|
+      array << [idx+1, Favorite.where(book_id: item, created_at: 7.days.ago..Time.current).count]
     end
 
     array.sort! {|a,b| b[1] <=> a[1]}
     @order_array = array.map{|item| item[0]}
+  end
+
+  def search_category(model, category)
+    search_category_array = Array.new
+    model.each do |item|
+      if item.has_category?(category)
+        search_category_array << item.id
+      end
+    end
+    return search_category_array
   end
 
 end

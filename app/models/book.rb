@@ -22,5 +22,11 @@ class Book < ApplicationRecord
   def book_comments_count
     BookComment.where(book_id: id).count
   end
+  
+  def has_category?(category)
+    (self.category == category) ? true : false
+  end
+  
+  
 
 end

@@ -24,6 +24,7 @@ user = User.all
     title: "test title#{n+1}",
     body: "this book created by #{m.name}",
     rate: rand(1..5),
+    category: "test#{50 % (n+1)}",
     created_at: rand(1..10).days.ago
   )
 end

@@ -10,6 +10,7 @@
         <li><%= link_to "Users", users_path, class: 'fas fa-users navbar-brand d-flex align-items-center', method: :get %></li>
         <li><%= link_to "Books", books_path, class: 'fas fa-book-open navbar-brand d-flex align-items-center', method: :get %></li>
         <li><%= link_to "logout", destroy_user_session_path, class: 'fas fa-sign-out-alt navbar-brand d-flex align-items-center', method: :delete %></li>
+        <li><%= render 'shared/header_form/search_category_form' %></li>
       </ul>
     <% else %>
       <!--User is log out-->

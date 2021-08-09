@@ -1,0 +1,9 @@
+<%= form_with url: books_path, method: 'get', class:"form-row", local:true do |f| %>
+  <div class="field">
+      <%= f.text_field :search_category %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit "検索",class: 'btn btn-sm btn-success' %>
+  </div>
+<% end %>

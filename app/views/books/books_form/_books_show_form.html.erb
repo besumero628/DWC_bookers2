@@ -1,6 +1,6 @@
 <table class = table>
   <tr>
-    <th></th><th>title</th> <th>Opinion</th> <th colspan=6></th>
+    <th></th><th>title</th> <th>Opinion</th> <th>Category</th> <th colspan=6></th>
   </tr>
 
   <tr>
@@ -13,6 +13,7 @@
 
     <td><%= book.title %></td>
     <td><%= book.body %></td>
+    <td><%= book.category %></td>
 
     <%= tag.td(render('favorites/favorites_form/favorite_btn_form', book: book), class: "favorite-btn#{book.id}")  %>
 

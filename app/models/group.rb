@@ -5,4 +5,7 @@ class Group < ApplicationRecord
 
   attachment :group_image
   
+  has_many :user_groups
+  has_many :users, through: :user_groups
+  
 end

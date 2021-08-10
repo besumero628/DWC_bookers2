@@ -1,0 +1,13 @@
+<!--flash message-->
+<%= render 'devise/shared/flash_messages' %>
+
+<!--validation error message-->
+<%= render 'shared/validation_error_messages', instance: @group %>
+
+<div class='row'>
+  <div class='col justify-content-center'>
+    <!--User Books-->
+    <h1>Create Groups</h1>
+    <%= render 'groups/groups_form/group_edit_form', group: @group  %>
+  </div>
+</div>

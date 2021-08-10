@@ -15,10 +15,10 @@
     )
 end
 
-user = User.all
+users = User.all
 
 50.times do |n|
-  m = user.sample
+  m = users.sample
   Book.create!(
     user_id: m.id,
     title: "test title#{n+1}",
@@ -26,6 +26,40 @@ user = User.all
     rate: rand(1..5),
     category: "test#{50 % (n+1)}",
     created_at: rand(1..10).days.ago
+  )
+end
+
+books = Book.all
+
+users.each do |follow_user|
+  users.each do |followed_user|
+    follow_flag = (rand(1..2) == 1 ? true : false)
+    if follow_flag
+      Relationship.create!(
+        follower_id: follow_user.id,
+        followed_id: followed_user.id
+      )
+    end
+  end
+end
+
+users.each do |user|
+  books.each do |book|
+    favorite_flag = (rand(1..2) == 1 ? true : false)
+    if favorite_flag
+      Favorite.create!(
+        user_id: user.id,
+        book_id: book.id
+      )
+    end
+  end
+end
+
+5.times do |n|
+  Group.create!(
+    name: "Group#{n+1}",
+    introduction: "this group is test sample",
+    owner_id: users.sample.id
   )
 end
 

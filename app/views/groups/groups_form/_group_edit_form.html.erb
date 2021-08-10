@@ -1,0 +1,26 @@
+<%= form_with model: group, url: group_path, local: true do |f| %>
+  <div class="field">
+    <%= f.label "グループ名" %><br>
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label "紹介文" %><br>
+    <%= f.text_field :introduction %>
+  </div>
+
+  <div class="field">
+    <%= f.label "グループ画像" %><br>
+    <%= f.attachment_field :group_image %>
+  </div>
+  
+  <div class="field">
+    <%= f.hidden_field :owner_id, :value => current_user.id %>
+  </div>
+  
+
+  
+  <div class="actions">
+    <%= f.submit "Create Group", class: 'btn btn-sm btn-success' %>
+  </div>
+<% end %>

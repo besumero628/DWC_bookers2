@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   resources :searches, only:[:index, :create]
   resources :groups, except: [:destroy] do
-    resource :events, only: [:new, :create]
+    resources :events, only: [:new, :show, :create]
     post "join" => "groups#join", as: :join
     delete "leave" => "groups#leave", as: :leave
   end

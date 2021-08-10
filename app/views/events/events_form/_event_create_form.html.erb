@@ -1,0 +1,15 @@
+<%= form_with model: event, url: group_events_path(params[:group_id]), local: true do |f| %>
+  <div class="field">
+    <%= f.label "Title" %><br>
+    <%= f.text_field :subject, autofocus: true%>
+  </div>
+
+  <div class="field">
+    <%= f.label "Content" %><br>
+    <%= f.text_area :message %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "送信", class: 'btn btn-sm btn-success' %>
+  </div>
+<% end %>

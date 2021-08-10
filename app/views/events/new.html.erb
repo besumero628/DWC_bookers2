@@ -1,0 +1,13 @@
+<!--flash message-->
+<%= render 'devise/shared/flash_messages' %>
+
+<!--validation error message-->
+<%= render 'shared/validation_error_messages', instance: @event %>
+
+<div class='row'>
+  <div class='col justify-content-center'>
+    <!--User Books-->
+    <h1>Event Mail</h1>
+    <%= render 'events/events_form/event_create_form', event: @event  %>
+  </div>
+</div>

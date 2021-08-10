@@ -50,12 +50,26 @@ class GroupsController < ApplicationController
       render action: :edit
     end
   end
+  
+  
+  def join
+    @group_user = GroupUser.new(user_id: current_user.id, group_id: params[:group_id])
+    @group_user.save
+    redirect_to groups_path
+  end
+  
+  def leave
+    @group_user = GroupUser.find_by(user_id: current_user.id, group_id: params[:group_id])
+    @group_user.destroy
+    redirect_to groups_path
+  end
 
 
   private
   def group_params
     params.require(:group).permit(:name, :introduction, :group_image, :owner_id)
   end
+  
 
 
 end

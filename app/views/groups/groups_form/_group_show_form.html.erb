@@ -1,8 +1,8 @@
 <table class = table>
   <tr>
-    <th>Image</th> <th>name</th> <th colspan=2></th>
+    <th></th> <th>グループ名</th> <th>紹介文</th> <th>メンバー</th> <th colspan=1></th>
   </tr>
-  
+
   <tr>
     <td>
       <%= attachment_image_tag group, :group_image, format: 'jpeg', fallback: "noimage.jpg", size:'50x50' %>
@@ -10,9 +10,24 @@
 
     <td><%= group.name %></td>
     <td><%= group.introduction %></td>
+    <td>
+      <%= User.find(group.owner_id).name %></br>
+      <% group.users.each do |user| %>
+        <%= user.name %></br>
+      <% end %>
+    </td>
     
+    
+    
+
     <% if group.owner_id == current_user.id %>
-    <td><%= link_to "edit", edit_group_path(group.id), class:"btn-sm btn-success" %></td>
+      <td><%= link_to "edit", edit_group_path(group.id), class:"btn-sm btn-success" %></td>
+    <% else %>
+      <% if group.users.include?(current_user) %>
+        <td><%= link_to "Leave this group", group_leave_path(group.id), class:"btn-sm btn-danger", method: :delete %></td>
+      <% else %>
+        <td><%= link_to "Join this group", group_join_path(group.id), class:"btn-sm btn-success", method: :post %></td>
+      <% end %>
     <% end %>
     <tr>
 </table>

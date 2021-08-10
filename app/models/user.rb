@@ -23,8 +23,8 @@ class User < ApplicationRecord
   has_many :send_user, class_name:"DirectMessage", foreign_key: "send_user_id", dependent: :destroy
   has_many :receive_user, class_name:"DirectMessage", foreign_key: "receive_user_id", dependent: :destroy
   
-  has_many :user_groups
-  has_many :groups, through: :user_groups
+  has_many :group_user
+  has_many :groups, through: :group_user
 
 
   def follower?(user_id)

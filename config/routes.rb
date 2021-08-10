@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   end
 
   resources :searches, only:[:index, :create]
-  resources :groups
+  resources :groups, except: [:destroy] do
+    post "join" => "groups#join", as: :join
+    delete "leave" => "groups#leave", as: :leave
+  end
 
 end
